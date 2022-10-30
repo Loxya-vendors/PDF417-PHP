@@ -5,5 +5,5 @@ PDF 417 barcode generator
 
 Requires the following components:
 
-* PHP >= 5.4
-* PHP extensions: bcmath, fileinfo, gd
+* PHP >= 8.0
+* PHP extensions: bcmath, fileinfo
