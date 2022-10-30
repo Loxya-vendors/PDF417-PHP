@@ -1,4 +1,5 @@
 <?php
+declare(strict_types=1);
 
 namespace BigFish\PDF417\Renderers;
 
@@ -43,7 +44,7 @@ abstract class AbstractRenderer implements RendererInterface
      *
      * @return string
      */
-    public abstract function getContentType();
+    abstract public function getContentType();
 
     /**
      * Renders the barcode from the given data set.
@@ -51,5 +52,5 @@ abstract class AbstractRenderer implements RendererInterface
      * @param  BarcodeData $data  The barcode data.
      * @return mixed              Output format depends on the renderer.
      */
-    public abstract function render(BarcodeData $data);
+    abstract public function render(BarcodeData $data);
 }

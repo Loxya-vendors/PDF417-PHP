@@ -1,4 +1,5 @@
 <?php
+declare(strict_types=1);
 
 namespace BigFish\PDF417;
 
@@ -21,13 +22,13 @@ class ReedSolomon
 
         // Level 2
         [
-            237, 308, 436, 284, 646, 653, 428, 379
+            237, 308, 436, 284, 646, 653, 428, 379,
         ],
 
         // Level 3
         [
             274, 562, 232, 755, 599, 524, 801, 132, 295, 116, 442, 428, 295, 42,
-            176, 65
+            176, 65,
         ],
 
         // Level 4
@@ -129,7 +130,7 @@ class ReedSolomon
      * Computes the solomon reed correction codewords for given data code words.
      *
      * @param  array   $data  Data code words.
-     * @param  integer $level Correction level (0-8).
+     * @param int $level Correction level (0-8).
      * @return array          Correction code words.
      */
     public function compute(array $data, $level)
@@ -156,12 +157,12 @@ class ReedSolomon
             $temp = ($value + $ecWords[$last]) % 929;
 
             for ($i = $last; $i >= 0; $i -= 1) {
-                $add = isset($ecWords[$i - 1]) ? $ecWords[$i - 1] : 0;
+                $add = $ecWords[$i - 1] ?? 0;
                 $ecWords[$i] = ($add + 929 - ($temp * $factors[$i]) % 929) % 929;
             }
         }
 
-        foreach($ecWords as &$word) {
+        foreach ($ecWords as &$word) {
             if ($word > 0) {
                 $word = 929 - $word;
             }

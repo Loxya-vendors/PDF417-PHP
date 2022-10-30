@@ -1,10 +1,9 @@
 <?php
+declare(strict_types=1);
 
 namespace BigFish\PDF417\Renderers;
 
 use BigFish\PDF417\BarcodeData;
-use BigFish\PDF417\RendererInterface;
-
 use Intervention\Image\ImageManager;
 use Intervention\Image\Gd\Color;
 

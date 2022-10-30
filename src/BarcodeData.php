@@ -1,4 +1,5 @@
 <?php
+declare(strict_types=1);
 
 namespace BigFish\PDF417;
 
@@ -22,7 +23,7 @@ class BarcodeData
                 $bin = decbin($value);
                 $len = strlen($bin);
                 for ($i = 0; $i < $len; $i++) {
-                    $pixelRow[] = (boolean) $bin[$i];
+                    $pixelRow[] = (bool) $bin[$i];
                 }
             }
             $pixelGrid[] = $pixelRow;

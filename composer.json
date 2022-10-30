@@ -1,25 +1,29 @@
 {
     "name": "bigfish/pdf417",
-    "description": "A library for generating PDF417 barcodes in PHP",
     "license": "MIT",
-    "autoload": {
-        "psr-4": {
-            "BigFish\\PDF417\\": "src/"
-        }
-    },
-    "autoload-dev": {
-        "psr-4": {
-            "BigFish\\PDF417\\Tests\\": "tests/"
-        }
+    "scripts": {
+        "lint": "vendor/bin/phpcs",
+        "lint:fix": "vendor/bin/phpcbf"
     },
     "require": {
-        "php": ">=5.4",
+        "php": "^8.0",
         "ext-gd": "*",
         "ext-bcmath": "*",
         "intervention/image": "~2.0"
     },
     "require-dev": {
-        "mockery/mockery": "@stable",
-        "phpunit/phpunit": "^4|^5"
+        "slevomat/coding-standard": "8.6.2",
+        "squizlabs/php_codesniffer": "3.7.1"
+    },
+    "autoload": {
+        "psr-4": {
+            "BigFish\\PDF417\\": "src/"
+        }
+    },
+    "config": {
+        "sort-packages": true,
+        "allow-plugins": {
+            "dealerdirect/phpcodesniffer-composer-installer": true
+        }
     }
 }

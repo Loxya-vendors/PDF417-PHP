@@ -1,4 +1,5 @@
 <?php
+declare(strict_types=1);
 
 namespace BigFish\PDF417;
 
@@ -50,7 +51,7 @@ class DataEncoder
 
         $codes = [];
         foreach ($chains as $chEnc) {
-            list($chain, $encoder) = $chEnc;
+            [$chain, $encoder] = $chEnc;
 
             $encoded = $encoder->encode($chain, $addSwitchCode);
             foreach ($encoded as $code) {

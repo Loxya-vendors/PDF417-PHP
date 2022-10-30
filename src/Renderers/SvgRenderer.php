@@ -1,11 +1,10 @@
 <?php
+declare(strict_types=1);
 
 namespace BigFish\PDF417\Renderers;
 
 use BigFish\PDF417\BarcodeData;
-
 use DOMImplementation;
-use DOMElement;
 
 class SvgRenderer extends AbstractRenderer
 {

@@ -1,4 +1,5 @@
 <?php
+declare(strict_types=1);
 
 namespace BigFish\PDF417;
 
@@ -413,16 +414,16 @@ class Codes
             0x19f9a, 0x10f0a, 0x11f1a, 0x13f3a, 0x103ac, 0x103a6, 0x107a8,
             0x183d6, 0x107a4, 0x107a2, 0x10396, 0x107b6, 0x187d4, 0x187d2,
             0x10794, 0x10fb4, 0x10792, 0x10fb2, 0x1c7ea,
-        ]
+        ],
     ];
 
     /**
      * Returns a low-level code work corresponding to the given high-level code
      * word in the given table.
      *
-     * @param  integer $table The table to look in (0-2).
-     * @param  integer $word  The code word to encode (0-928).
-     * @return integer        The encoded code word.
+     * @param int $table The table to look in (0-2).
+     * @param int $word The code word to encode (0-928).
+     * @return int The encoded code word.
      */
     public static function getCode($table, $word)
     {

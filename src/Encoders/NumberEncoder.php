@@ -1,4 +1,5 @@
 <?php
+declare(strict_types=1);
 
 namespace BigFish\PDF417\Encoders;
 
@@ -15,14 +16,14 @@ class NumberEncoder implements EncoderInterface
     /**
      * Code word used to switch to Numeric mode.
      */
-    const SWITCH_CODE_WORD = 902;
+    public const SWITCH_CODE_WORD = 902;
 
     /**
      * {@inheritdoc}
      */
     public function canEncode($char)
     {
-        return is_string($char) && 1 === preg_match('/^[0-9]$/', $char);
+        return is_string($char) && preg_match('/^[0-9]$/', $char) === 1;
     }
 
     /**
@@ -84,11 +85,11 @@ class NumberEncoder implements EncoderInterface
         $chunk = "1" . $chunk;
 
         $cws = [];
-        while(bccomp($chunk, 0) > 0) {
+        while (bccomp($chunk, 0) > 0) {
             $cw = bcmod($chunk, 900);
             $chunk = bcdiv($chunk, 900, 0); // Integer division
 
-            array_unshift($cws, (integer) $cw);
+            array_unshift($cws, (int) $cw);
         }
 
         return $cws;

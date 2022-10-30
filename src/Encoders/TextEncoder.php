@@ -1,4 +1,5 @@
 <?php
+declare(strict_types=1);
 
 namespace BigFish\PDF417\Encoders;
 
@@ -19,48 +20,48 @@ class TextEncoder implements EncoderInterface
     /**
      * Code word used to switch to Text mode.
      */
-    const SWITCH_CODE_WORD = 900;
+    public const SWITCH_CODE_WORD = 900;
 
     /**
      * Since each code word consists of 2 characters, a padding value is
      * needed when encoding a single character. 29 is used as padding because
      * it's a switch in all 4 submodes, and doesn't add any data.
      */
-    const PADDING_VALUE = 29;
+    public const PADDING_VALUE = 29;
 
     // -- Submodes ------------------------------------------------------
 
     /** Uppercase submode. */
-    const SUBMODE_UPPER = "SUBMODE_UPPER";
+    public const SUBMODE_UPPER = "SUBMODE_UPPER";
 
     /** Lowercase submode. */
-    const SUBMODE_LOWER = "SUBMODE_LOWER";
+    public const SUBMODE_LOWER = "SUBMODE_LOWER";
 
     /** mixed submode (numbers and some punctuation). */
-    const SUBMODE_MIXED = "SUBMODE_MIXED";
+    public const SUBMODE_MIXED = "SUBMODE_MIXED";
 
     /** Punctuation submode. */
-    const SUBMODE_PUNCT = "SUBMODE_PUNCT";
+    public const SUBMODE_PUNCT = "SUBMODE_PUNCT";
 
     // -- Submode switches ----------------------------------------------
 
     /** Switch to uppercase submode. */
-    const SWITCH_UPPER = "SWITCH_UPPER";
+    public const SWITCH_UPPER = "SWITCH_UPPER";
 
     /** Switch to uppercase submode for a single character. */
-    const SWITCH_UPPER_SINGLE = "SWITCH_UPPER_SINGLE";
+    public const SWITCH_UPPER_SINGLE = "SWITCH_UPPER_SINGLE";
 
     /** Switch to lowercase submode. */
-    const SWITCH_LOWER = "SWITCH_LOWER";
+    public const SWITCH_LOWER = "SWITCH_LOWER";
 
     /** Switch to mixed submode. */
-    const SWITCH_MIXED = "SWITCH_MIXED";
+    public const SWITCH_MIXED = "SWITCH_MIXED";
 
     /** Switch to punctuation submode. */
-    const SWITCH_PUNCT = "SWITCH_PUNCT";
+    public const SWITCH_PUNCT = "SWITCH_PUNCT";
 
     /** Switch to punctuation submode for a single character. */
-    const SWITCH_PUNCT_SINGLE = "SWITCH_PUNCT_SINGLE";
+    public const SWITCH_PUNCT_SINGLE = "SWITCH_PUNCT_SINGLE";
 
     // ------------------------------------------------------------------
 
@@ -72,7 +73,7 @@ class TextEncoder implements EncoderInterface
             "S", "T", "U", "V", "W", "X", "Y", "Z", " ",
             self::SWITCH_LOWER,
             self::SWITCH_MIXED,
-            self::SWITCH_PUNCT_SINGLE
+            self::SWITCH_PUNCT_SINGLE,
         ],
 
         self::SUBMODE_LOWER => [
@@ -91,7 +92,7 @@ class TextEncoder implements EncoderInterface
             self::SWITCH_PUNCT, " ",
             self::SWITCH_LOWER,
             self::SWITCH_UPPER,
-            self::SWITCH_PUNCT_SINGLE
+            self::SWITCH_PUNCT_SINGLE,
         ],
 
         self::SUBMODE_PUNCT => [
@@ -188,7 +189,7 @@ class TextEncoder implements EncoderInterface
         // Iterate byte-by-byte, non-ascii encoding will be encoded in bytes
         // sub-mode.
         $len = strlen($text);
-        for ($i=0; $i < $len; $i++) {
+        for ($i = 0; $i < $len; $i++) {
             $char = $text[$i];
 
             // TODO: detect when to use _SINGLE switches for encoding just one
@@ -224,7 +225,6 @@ class TextEncoder implements EncoderInterface
         $chunks = array_chunk($codes, 2);
 
         foreach ($chunks as $key => $chunk) {
-
             // Add padding if single char in chunk
             if (count($chunk) == 1) {
                 $chunk[] = self::PADDING_VALUE;

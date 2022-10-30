@@ -1,4 +1,5 @@
 <?php
+declare(strict_types=1);
 
 namespace BigFish\PDF417;
 
@@ -7,23 +8,23 @@ namespace BigFish\PDF417;
  */
 class PDF417
 {
-    const MIN_COLUMNS = 1;
-    const MAX_COLUMNS = 30;
-    const DEFAULT_COLUMNS = 6;
+    public const MIN_COLUMNS = 1;
+    public const MAX_COLUMNS = 30;
+    public const DEFAULT_COLUMNS = 6;
 
-    const MIN_SECURITY_LEVEL = 0;
-    const MAX_SECURITY_LEVEL = 8;
-    const DEFAULT_SECURITY_LEVEL = 2;
+    public const MIN_SECURITY_LEVEL = 0;
+    public const MAX_SECURITY_LEVEL = 8;
+    public const DEFAULT_SECURITY_LEVEL = 2;
 
     // TODO: Check barcode respects rows/codeword limits.
-    const MIN_ROWS = 3;
-    const MAX_ROWS = 90;
-    const MAX_CODE_WORDS = 925;
+    public const MIN_ROWS = 3;
+    public const MAX_ROWS = 90;
+    public const MAX_CODE_WORDS = 925;
 
-    const START_CHARACTER = 0x1fea8;
-    const STOP_CHARACTER  = 0x3fa29;
+    public const START_CHARACTER = 0x1fea8;
+    public const STOP_CHARACTER  = 0x3fa29;
 
-    const PADDING_CODE_WORD = 900;
+    public const PADDING_CODE_WORD = 900;
 
 
     // -- Properties -----------------------------------------------------------
@@ -36,7 +37,7 @@ class PDF417
      *
      * Valid values are between 3 and 30, defaults to 6.
      *
-     * @var integer
+     * @var int
      */
     private $columns = self::DEFAULT_COLUMNS;
 
@@ -45,7 +46,7 @@ class PDF417
      *
      * Valid values are between 0 and 8, defaults to 2.
      *
-     * @var integer
+     * @var int
      */
     private $securityLevel = self::DEFAULT_SECURITY_LEVEL;
 
@@ -54,7 +55,7 @@ class PDF417
     /**
      * Returns the column count.
      *
-     * @return integer
+     * @return int
      */
     public function getColumns()
     {
@@ -64,7 +65,7 @@ class PDF417
     /**
      * Sets the column count.
      *
-     * @param integer $columns
+     * @param int $columns
      */
     public function setColumns($columns)
     {
@@ -85,7 +86,7 @@ class PDF417
     /**
      * Returns the security level.
      *
-     * @return integer
+     * @return int
      */
     public function getSecurityLevel()
     {
@@ -95,7 +96,7 @@ class PDF417
     /**
      * Sets the security level.
      *
-     * @param integer $securityLevel
+     * @param int $securityLevel
      */
     public function setSecurityLevel($securityLevel)
     {
@@ -207,7 +208,7 @@ class PDF417
         // Table used to encode this row
         $tableID = $rowNum % 3;
 
-        switch($tableID) {
+        switch ($tableID) {
             case 0:
                 $x = intval(($rows - 1) / 3);
                 break;
@@ -227,7 +228,7 @@ class PDF417
     {
         $tableID = $rowNum % 3;
 
-        switch($tableID) {
+        switch ($tableID) {
             case 0:
                 $x = $columns - 1;
                 break;
