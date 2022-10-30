@@ -22,7 +22,7 @@ interface EncoderInterface
      *
      * @return array An array of code words.
      *
-     * @throws Exception If any of the characters cannot be encoded
+     * @throws \Exception If any of the characters cannot be encoded
      */
     public function encode($string, $addSwitchCode);
 

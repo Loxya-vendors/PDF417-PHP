@@ -3,7 +3,8 @@
     "license": "MIT",
     "scripts": {
         "lint": "vendor/bin/phpcs",
-        "lint:fix": "vendor/bin/phpcbf"
+        "lint:fix": "vendor/bin/phpcbf",
+        "phpstan": "vendor/bin/phpstan analyse"
     },
     "require": {
         "php": "^8.0",
@@ -12,6 +13,7 @@
         "intervention/image": "~2.0"
     },
     "require-dev": {
+        "phpstan/phpstan": "1.8.11",
         "slevomat/coding-standard": "8.6.2",
         "squizlabs/php_codesniffer": "3.7.1"
     },

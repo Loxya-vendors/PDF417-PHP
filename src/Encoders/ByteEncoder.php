@@ -94,14 +94,14 @@ class ByteEncoder implements EncoderInterface
         $sum = "0";
         for ($i = 0; $i < 6; $i++) {
             $char = substr($chunk, 5 - $i, 1);
-            $val = bcmul(bcpow(256, $i), ord($char));
+            $val = bcmul(bcpow('256', (string) $i), (string) ord($char));
             $sum = bcadd($sum, $val);
         }
 
         $cws = [];
-        while (bccomp($sum, 0) > 0) {
-            $cw = bcmod($sum, 900);
-            $sum = bcdiv($sum, 900, 0); // Integer division
+        while (bccomp($sum, '0') > 0) {
+            $cw = bcmod($sum, '900');
+            $sum = bcdiv($sum, '900', 0); // Integer division
 
             array_unshift($cws, (int) $cw);
         }

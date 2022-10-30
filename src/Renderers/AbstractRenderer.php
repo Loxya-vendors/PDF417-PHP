@@ -31,7 +31,6 @@ abstract class AbstractRenderer implements RendererInterface
     /**
      * Validates the options, throws an Exception on failure.
      *
-     * @param  array $options
      * @return array An array of errors, empty if no errors.
      */
     public function validateOptions()

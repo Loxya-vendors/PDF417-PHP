@@ -208,18 +208,12 @@ class PDF417
         // Table used to encode this row
         $tableID = $rowNum % 3;
 
-        switch ($tableID) {
-            case 0:
-                $x = intval(($rows - 1) / 3);
-                break;
-            case 1:
-                $x = $secLev * 3;
-                $x += ($rows - 1) % 3;
-                break;
-            case 2:
-                $x = $columns - 1;
-                break;
-        }
+        $x = match ($tableID) {
+            0 => intval(($rows - 1) / 3),
+            1 => ($secLev * 3) + (($rows - 1) % 3),
+            2 => $columns - 1,
+            default => 0,
+        };
 
         return 30 * intval($rowNum / 3) + $x;
     }
@@ -228,18 +222,12 @@ class PDF417
     {
         $tableID = $rowNum % 3;
 
-        switch ($tableID) {
-            case 0:
-                $x = $columns - 1;
-                break;
-            case 1:
-                $x = intval(($rows - 1) / 3);
-                break;
-            case 2:
-                $x = $secLev * 3;
-                $x += ($rows - 1) % 3;
-                break;
-        }
+        $x = match ($tableID) {
+            0 => $columns - 1,
+            1 => intval(($rows - 1) / 3),
+            2 => ($secLev * 3) + (($rows - 1) % 3),
+            default => 0,
+        };
 
         return 30 * intval($rowNum / 3) + $x;
     }

@@ -116,16 +116,4 @@ class DataEncoder
         $ord = ord($char);
         throw new \Exception("Cannot encode character $char (ASCII $ord)");
     }
-
-    private function encodeChain($chain, EncoderInterface $encoder, array &$codes)
-    {
-        if (empty($chain)) {
-            return;
-        }
-
-        $encoded = $encoder->encode($chain);
-        foreach ($encoded as $code) {
-            $codes[] = $code;
-        }
-    }
 }

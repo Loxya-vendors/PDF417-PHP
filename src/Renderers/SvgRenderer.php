@@ -14,7 +14,7 @@ class SvgRenderer extends AbstractRenderer
     protected $options = [
         'scale' => 3,
         'ratio' => 3,
-        'color' => "#000",
+        'color' => '#000',
         'description' => null,
     ];
 
@@ -67,22 +67,22 @@ class SvgRenderer extends AbstractRenderer
         $doc = $this->createDocument();
 
         // Root document
-        $svg = $doc->createElement("svg");
-        $svg->setAttribute("height", $height);
-        $svg->setAttribute("width", $width);
-        $svg->setAttribute("version", "1.1");
-        $svg->setAttribute("xmlns", "http://www.w3.org/2000/svg");
+        $svg = $doc->createElement('svg');
+        $svg->setAttribute('height', (string) $height);
+        $svg->setAttribute('width', (string) $width);
+        $svg->setAttribute('version', '1.1');
+        $svg->setAttribute('xmlns', 'http://www.w3.org/2000/svg');
 
         // Add description node if defined
         $desc = $options['description'];
         if (!empty($desc)) {
             $svg->appendChild(
-                $doc->createElement("description", $desc)
+                $doc->createElement('description', $desc)
             );
         }
 
         // Create the group
-        $group = $doc->createElement("g");
+        $group = $doc->createElement('g');
         $group->setAttribute('id', 'barcode');
         $group->setAttribute('fill', $options['color']);
         $group->setAttribute('stroke', 'none');
@@ -95,10 +95,10 @@ class SvgRenderer extends AbstractRenderer
                 }
 
                 $rect = $doc->createElement('rect');
-                $rect->setAttribute("x", $x * $scaleX);
-                $rect->setAttribute("y", $y * $scaleY);
-                $rect->setAttribute("width", $scaleX);
-                $rect->setAttribute("height", $scaleY);
+                $rect->setAttribute('x', (string) ($x * $scaleX));
+                $rect->setAttribute('y', (string) ($y * $scaleY));
+                $rect->setAttribute('width', (string) $scaleX);
+                $rect->setAttribute('height', (string) $scaleY);
 
                 $group->appendChild($rect);
             }
@@ -116,12 +116,12 @@ class SvgRenderer extends AbstractRenderer
         $impl = new DOMImplementation();
 
         $docType = $impl->createDocumentType(
-            "svg",
-            "-//W3C//DTD SVG 1.1//EN",
-            "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd"
+            'svg',
+            '-//W3C//DTD SVG 1.1//EN',
+            'http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd'
         );
 
-        $doc = $impl->createDocument(null, null, $docType);
+        $doc = $impl->createDocument(null, '', $docType);
         $doc->formatOutput = true;
 
         return $doc;

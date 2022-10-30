@@ -85,9 +85,9 @@ class NumberEncoder implements EncoderInterface
         $chunk = "1" . $chunk;
 
         $cws = [];
-        while (bccomp($chunk, 0) > 0) {
-            $cw = bcmod($chunk, 900);
-            $chunk = bcdiv($chunk, 900, 0); // Integer division
+        while (bccomp($chunk, '0') > 0) {
+            $cw = bcmod($chunk, '900');
+            $chunk = bcdiv($chunk, '900', 0); // Integer division
 
             array_unshift($cws, (int) $cw);
         }
